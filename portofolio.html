@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krisna Noer Mustafa | Portfolio</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Custom CSS for advanced styling and animations -->
+    <style>
+        :root {
+            --primary-light: #3b82f6; /* blue-500 */
+            --secondary-light: #64748b; /* slate-500 */
+            --background-light: #f1f5f9; /* slate-100 */
+            --surface-light: #ffffff;
+            --text-light: #0f172a; /* slate-900 */
+            --text-secondary-light: #475569; /* slate-600 */
+
+            --primary-dark: #60a5fa; /* blue-400 */
+            --secondary-dark: #94a3b8; /* slate-400 */
+            --background-dark: #0f172a; /* slate-900 */
+            --surface-dark: #1e293b; /* slate-800 */
+            --text-dark: #f1f5f9; /* slate-100 */
+            --text-secondary-dark: #94a3b8; /* slate-400 */
+        }
+
+        /* Light Mode (default) */
+        body {
+            --primary: var(--primary-light);
+            --secondary: var(--secondary-light);
+            --background: var(--background-light);
+            --surface: var(--surface-light);
+            --text-primary: var(--text-light);
+            --text-secondary: var(--text-secondary-light);
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --nav-bg: rgba(255, 255, 255, 0.8);
+            --blur-bg: ' ';
+        }
+
+        /* Dark Mode */
+        body.dark {
+            --primary: var(--primary-dark);
+            --secondary: var(--secondary-dark);
+            --background: var(--background-dark);
+            --surface: var(--surface-dark);
+            --text-primary: var(--text-dark);
+            --text-secondary: var(--text-secondary-dark);
+            --card-bg: rgba(30, 41, 59, 0.5);
+            --nav-bg: rgba(30, 41, 59, 0.7);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background);
+            color: var(--text-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Glassmorphism Effect for Navbar */
+        .glass-nav {
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        /* Hero Section Styling */
+        #hero {
+            position: relative;
+            overflow: hidden;
+        }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        #hero .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Typing Animation */
+        .typing-cursor {
+            display: inline-block;
+            width: 8px;
+            height: 1.5rem;
+            background-color: var(--primary);
+            animation: blink 0.7s infinite;
+            margin-left: 4px;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Project Card Glassmorphism & Hover */
+        .project-card, .cert-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            transform-style: preserve-3d;
+        }
+        .project-card:hover, .cert-card:hover {
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transform: translateY(-5px);
+        }
+
+        /* Section Fade-in Animation */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1), transform 0.8s cubic-bezier(0.645, 0.045, 0.355, 1);
+        }
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Timeline Styling */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            background-color: var(--surface);
+            border: 3px solid var(--primary);
+            top: 0.25rem;
+            left: -2.5rem;
+            z-index: 10;
+            transition: background-color 0.3s ease, border-color 0.3s ease;
+        }
+        .timeline-line {
+            position: absolute;
+            height: 100%;
+            width: 2px;
+            background-color: var(--primary);
+            left: calc(1rem - 1px);
+            top: 0;
+            opacity: 0.3;
+        }
+
+        /* Scroll to top button */
+        #scrollToTopBtn {
+            position: fixed;
+            bottom: -100px;
+            right: 20px;
+            z-index: 100;
+            transition: bottom 0.5s ease-in-out;
+        }
+        #scrollToTopBtn.visible {
+            bottom: 20px;
+        }
+
+        /* Preloader */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--background);
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--secondary);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Filter buttons */
+        .filter-btn {
+            transition: all 0.3s ease;
+            background-color: var(--surface);
+            color: var(--text-secondary);
+        }
+        .filter-btn.active {
+            background-color: var(--primary) !important;
+            color: white !important;
+            box-shadow: 0 4px 14px 0 rgba(0, 118, 255, 0.39);
+        }
+        .filter-btn:hover:not(.active) {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        /* Image Modal (Lightbox) */
+        #imageModal {
+            transition: opacity 0.3s ease;
+        }
+        #imageModal img {
+            max-width: 90vw;
+            max-height: 90vh;
+            transition: transform 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 dark:bg-slate-900 text-slate-900 dark:text-slate-100">
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="glass-nav sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-blue-500 dark:text-blue-400">KNM</a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Tentang</a>
+                <a href="#skills" class="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Keahlian</a>
+                <a href="#certifications" class="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Sertifikasi</a>
+                <a href="#projects" class="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Proyek</a>
+                <a href="#education" class="text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400 transition">Pendidikan</a>
+                <a href="#contact" class="bg-blue-500 text-white px-5 py-2 rounded-full hover:bg-blue-600 transition shadow-lg hover:shadow-blue-500/50">Hubungi</a>
+            </div>
+            <div class="flex items-center">
+                 <!-- Dark Mode Toggle -->
+                <button id="theme-toggle" class="mr-4 text-slate-600 dark:text-slate-300 focus:outline-none">
+                    <i class="fas fa-moon text-xl hidden dark:block"></i>
+                    <i class="fas fa-sun text-xl block dark:hidden"></i>
+                </button>
+                <button id="mobile-menu-button" class="md:hidden text-slate-600 dark:text-slate-300 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#about" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400">Tentang</a>
+            <a href="#skills" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400">Keahlian</a>
+            <a href="#certifications" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400">Sertifikasi</a>
+            <a href="#projects" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400">Proyek</a>
+            <a href="#education" class="block py-2 text-slate-600 dark:text-slate-300 hover:text-blue-500 dark:hover:text-blue-400">Pendidikan</a>
+            <a href="#contact" class="block mt-2 bg-blue-500 text-white px-4 py-2 rounded-full text-center hover:bg-blue-600">Hubungi</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="hero" class="py-24 md:py-40 bg-white dark:bg-slate-900/50">
+            <div id="particles-js"></div>
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-slate-800 dark:text-white leading-tight">Krisna Noer Mustafa</h1>
+                <p class="mt-4 text-lg md:text-xl text-slate-600 dark:text-slate-300">
+                    <span id="typing-text"></span><span class="typing-cursor"></span>
+                </p>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-slate-800 dark:text-white mb-16">Tentang Saya</h2>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-10 md:gap-16">
+                    <!-- Profile Picture -->
+                    <div class="w-48 h-48 md:w-64 md:h-64 flex-shrink-0">
+                        <img src="image/krisna.jpg" alt="Foto Profil Krisna Noer Mustafa" class="rounded-full w-full h-full object-cover shadow-2xl border-4 border-white dark:border-slate-700" onerror="this.onerror=null;this.src='https://placehold.co/400x400/cccccc/ffffff?text=Image+Not+Found';">
+                    </div>
+                    <!-- About Text -->
+                    <div class="max-w-xl text-center md:text-left text-slate-600 dark:text-slate-300 leading-relaxed">
+                        <p>
+                            Mahasiswa D3 Rekayasa Perangkat Lunak Aplikasi yang memiliki minat di bidang Software Quality Assurance. Selama studi, saya telah memahami dan mempelajari secara mendalam tentang pengembangan perangkat lunak, serta metodologi dan teknik pengujian perangkat lunak. Dengan kemampuan analisis yang baik dan perhatian terhadap detail, saya mampu mengidentifikasi dan memecahkan masalah dalam perangkat lunak dengan efisien. Saya juga memiliki kemampuan komunikasi yang baik, yang membantu saya bekerja efektif dalam tim maupun secara mandiri.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-white dark:bg-slate-800/30 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-slate-800 dark:text-white mb-12">Keahlian & Kompetensi</h2>
+                <div class="grid md:grid-cols-2 gap-12">
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-semibold text-slate-700 dark:text-slate-200 mb-6 flex items-center"><i class="fas fa-code mr-3 text-blue-500"></i>Keterampilan Teknis</h3>
+                        <div class="space-y-4 text-slate-600 dark:text-slate-300">
+                            <p><strong>Bahasa:</strong> Java, Kotlin, Python, PHP</p>
+                            <p><strong>Framework:</strong> Flutter, Laravel</p>
+                            <p><strong>Pengujian:</strong> Manual & Automation (Selenium)</p>
+                            <p><strong>Tools:</strong> Visual Studio Code, Android Studio, Git</p>
+                            <p><strong>Lainnya:</strong> Dokumentasi Pengujian, REST API</p>
+                        </div>
+                    </div>
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-lg shadow-lg">
+                        <h3 class="text-2xl font-semibold text-slate-700 dark:text-slate-200 mb-6 flex items-center"><i class="fas fa-users mr-3 text-blue-500"></i>Soft Skills</h3>
+                        <div class="space-y-4 text-slate-600 dark:text-slate-300">
+                            <p>Komunikasi Efektif</p>
+                            <p>Kerja Sama Tim & Kolaborasi</p>
+                            <p>Analisis & Pemecahan Masalah</p>
+                            <p>Ketelitian & Perhatian pada Detail</p>
+                            <p>Manajemen Waktu</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certifications" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-slate-800 dark:text-white mb-12">Sertifikasi & Lisensi</h2>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Ganti 'src' dengan path gambar sertifikat Anda -->
+                    <div class="cert-card rounded-xl shadow-lg overflow-hidden group cursor-pointer">
+                        <img src="image/leadership.png" alt="Sertifikat Leadership" class="cert-img w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white">Leadership Training</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-1">Dikeluarkan oleh Telkom University</p>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-xl shadow-lg overflow-hidden group cursor-pointer">
+                        <img src="image/himadira.png" alt="Sertifikat Himadira" class="cert-img w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white">Anggota Aktif Himadira</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-1">Dikeluarkan oleh Himadira</p>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-xl shadow-lg overflow-hidden group cursor-pointer">
+                        <img src="image/lo.png" alt="Sertifikat Liaison Officer" class="cert-img w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white">Liaison Officer PKKMB</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-1">Dikeluarkan oleh Telkom University</p>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-xl shadow-lg overflow-hidden group cursor-pointer">
+                        <img src="image/star.png" alt="Sertifikat STAR" class="cert-img w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white">STAR Certification</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-1">Dikeluarkan oleh Telkom University</p>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-xl shadow-lg overflow-hidden group cursor-pointer">
+                        <img src="image/huawei.png" alt="Sertifikat Huawei" class="cert-img w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white">Huawei ICT Competition</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-1">Dikeluarkan oleh Huawei</p>
+                        </div>
+                    </div>
+                    <div class="cert-card rounded-xl shadow-lg overflow-hidden group cursor-pointer">
+                        <img src="image/wp.png" alt="Sertifikat WordPress" class="cert-img w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/cccccc/ffffff?text=Image+Not+Found';">
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white">WordPress Course</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-1">Dikeluarkan oleh Dicoding</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 bg-white dark:bg-slate-800/30 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-slate-800 dark:text-white mb-4">Aktivitas & Proyek</h2>
+                <p class="text-center text-slate-600 dark:text-slate-400 mb-12">Berikut adalah beberapa proyek dan aktivitas yang pernah saya kerjakan.</p>
+                <div class="flex justify-center flex-wrap gap-2 md:gap-4 mb-12 project-filters">
+                    <button class="filter-btn active font-semibold px-5 py-2 rounded-full" data-filter="all">Semua</button>
+                    <button class="filter-btn font-semibold px-5 py-2 rounded-full" data-filter="dev">Development</button>
+                    <button class="filter-btn font-semibold px-5 py-2 rounded-full" data-filter="test">Testing</button>
+                    <button class="filter-btn font-semibold px-5 py-2 rounded-full" data-filter="intern">Internship</button>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 projects-grid">
+                    <!-- Project Cards -->
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden" data-category="intern">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-500 dark:text-blue-400 font-semibold">Januari 2025</span>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white mt-2">Intern QA Tester at DPR RI</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-2">Manual testing, penyusunan Test Plan & Case, dan UI automation testing menggunakan Selenium.</p>
+                        </div>
+                    </div>
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden" data-category="dev">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-500 dark:text-blue-400 font-semibold">Maret 2025</span>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white mt-2">MyAkastra Mobile App</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-2">Aplikasi servis kendaraan Akastra Toyota menggunakan Flutter dan Firebase.</p>
+                        </div>
+                    </div>
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden" data-category="dev">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-500 dark:text-blue-400 font-semibold">Oktober 2024</span>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white mt-2">FitOn Mobile App</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-2">Aplikasi kebugaran dengan berbagai latihan fisik menggunakan Kotlin dan Jetpack Compose.</p>
+                        </div>
+                    </div>
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden" data-category="test">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-500 dark:text-blue-400 font-semibold">April 2024</span>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white mt-2">Android Testing TelyuFoodiez</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-2">Pengujian mobile, penyusunan Test Plan, eksekusi, perbaikan bug, dan usability testing.</p>
+                        </div>
+                    </div>
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden" data-category="dev">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-500 dark:text-blue-400 font-semibold">Februari 2024</span>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white mt-2">TelyuFoodiez Mobile App</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-2">Aplikasi pemesanan makanan kantin Tel-U menggunakan Kotlin dan Jetpack Compose.</p>
+                        </div>
+                    </div>
+                    <div class="project-card rounded-xl shadow-lg overflow-hidden" data-category="test">
+                        <div class="p-6">
+                            <span class="text-sm text-blue-500 dark:text-blue-400 font-semibold">November 2023</span>
+                            <h3 class="text-xl font-bold text-slate-800 dark:text-white mt-2">Website Testing MoonBucks</h3>
+                            <p class="text-slate-600 dark:text-slate-300 mt-2">Pengujian manual pada website pemesanan, termasuk alur transaksi dan fungsionalitas.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Education Section -->
+        <section id="education" class="py-20 fade-in-section">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-slate-800 dark:text-white mb-12">Pendidikan & Organisasi</h2>
+                <div class="relative max-w-2xl mx-auto pl-10">
+                    <div class="timeline-line"></div>
+                    <!-- Timeline Item 1 -->
+                    <div class="mb-12 relative timeline-item">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Telkom University Bandung</h3>
+                        <p class="text-slate-600 dark:text-slate-300">D3 Rekayasa Perangkat Lunak Aplikasi</p>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">2022 - 2025</p>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="mb-12 relative timeline-item">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Liaison Officer (LO) PKKMB</h3>
+                        <p class="text-slate-600 dark:text-slate-300">Orientasi Mahasiswa Baru D3 RPL Aplikasi</p>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">2023</p>
+                    </div>
+                    <!-- Timeline Item 3 -->
+                    <div class="mb-12 relative timeline-item">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Himpunan D3 RPL Aplikasi</h3>
+                        <p class="text-slate-600 dark:text-slate-300">Divisi Pengembangan Potensi Minat dan Bakat</p>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">2023</p>
+                    </div>
+                    <!-- Timeline Item 4 -->
+                    <div class="mb-8 relative timeline-item">
+                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">SMA Negeri 85 Jakarta</h3>
+                        <p class="text-slate-600 dark:text-slate-300">Jurusan IPA</p>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">2018 - 2021</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Contact Section -->
+        <footer id="contact" class="py-20 bg-slate-800 dark:bg-slate-900 text-white">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold mb-4">Hubungi Saya</h2>
+                <p class="mb-8 max-w-lg mx-auto text-slate-300">Saya terbuka untuk diskusi, kolaborasi, atau peluang kerja. Jangan ragu untuk menghubungi saya.</p>
+                <div class="flex flex-wrap justify-center items-center gap-6 md:gap-8">
+                    <a href="mailto:krisnamustafa74@gmail.com" class="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition">
+                        <i class="fas fa-envelope"></i><span>krisnamustafa74@gmail.com</span>
+                    </a>
+                    <a href="https://www.linkedin.com/in/krisnamustafa/" target="_blank" class="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition">
+                         <i class="fab fa-linkedin"></i><span>LinkedIn</span>
+                    </a>
+                    <a href="tel:+6285717650421" class="flex items-center space-x-2 text-slate-300 hover:text-blue-400 transition">
+                         <i class="fas fa-phone"></i><span>+62 857 1765 0421</span>
+                    </a>
+                </div>
+                <p class="mt-12 text-slate-400 text-sm">&copy; 2025 Krisna Noer Mustafa. Dibuat dengan <i class="fas fa-heart text-red-500"></i>.</p>
+            </div>
+        </footer>
+    </main>
+    
+    <!-- Image Modal -->
+    <div id="imageModal" class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center p-4 z-[999] hidden opacity-0">
+        <img id="modalImage" src="" alt="Tampilan Penuh Sertifikat" class="rounded-lg shadow-2xl transform scale-95">
+        <button id="closeModal" class="absolute top-4 right-4 text-white text-4xl font-bold">&times;</button>
+    </div>
+    
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTopBtn" class="bg-blue-500 text-white rounded-full p-3 shadow-lg hover:bg-blue-600 transition">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
+    </button>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Preloader ---
+            const preloader = document.getElementById('preloader');
+            window.addEventListener('load', () => {
+                preloader.style.opacity = '0';
+                preloader.style.visibility = 'hidden';
+            });
+
+            // --- Theme Toggle (Dark/Light Mode) ---
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+
+            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                body.classList.add('dark');
+            } else {
+                body.classList.remove('dark');
+            }
+
+            themeToggle.addEventListener('click', function() {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('color-theme', 'dark');
+                } else {
+                    localStorage.setItem('color-theme', 'light');
+                }
+            });
+
+            // --- Mobile Menu Toggle ---
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+            mobileMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // --- Typing Animation ---
+            const typingTextElement = document.getElementById('typing-text');
+            const texts = ["Freshgraduate Aplication Software Engineering", "Software Quality Assurance Enthusiast"];
+            let textIndex = 0;
+            let charIndex = 0;
+
+            function type() {
+                if (charIndex < texts[textIndex].length) {
+                    typingTextElement.textContent += texts[textIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, 50);
+                } else {
+                    setTimeout(erase, 2000);
+                }
+            }
+
+            function erase() {
+                if (charIndex > 0) {
+                    typingTextElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(erase, 25);
+                } else {
+                    textIndex = (textIndex + 1) % texts.length;
+                    setTimeout(type, 500);
+                }
+            }
+            if(typingTextElement) type();
+
+            // --- Project Filtering ---
+            const filterContainer = document.querySelector('.project-filters');
+            const projectCards = document.querySelectorAll('.project-card');
+            if (filterContainer) {
+                filterContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('filter-btn')) {
+                        filterContainer.querySelector('.active').classList.remove('active');
+                        e.target.classList.add('active');
+                        const filterValue = e.target.getAttribute('data-filter');
+                        
+                        projectCards.forEach(card => {
+                            card.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
+                            card.style.transform = 'scale(0.95)';
+                            card.style.opacity = '0';
+                            
+                            setTimeout(() => {
+                                if (card.dataset.category === filterValue || filterValue === 'all') {
+                                    card.style.display = 'block';
+                                    setTimeout(() => {
+                                       card.style.transform = 'scale(1)';
+                                       card.style.opacity = '1';
+                                    }, 50);
+                                } else {
+                                    card.style.display = 'none';
+                                }
+                            }, 300);
+                        });
+                    }
+                });
+            }
+
+            // --- Image Modal Logic ---
+            const imageModal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const closeModalBtn = document.getElementById('closeModal');
+            
+            document.querySelectorAll('.cert-img').forEach(img => {
+                img.addEventListener('click', function() {
+                    imageModal.classList.remove('hidden');
+                    setTimeout(() => {
+                        imageModal.classList.remove('opacity-0');
+                        modalImage.src = this.src;
+                        modalImage.classList.remove('scale-95');
+                    }, 10);
+                });
+            });
+
+            function closeModal() {
+                modalImage.classList.add('scale-95');
+                imageModal.classList.add('opacity-0');
+                setTimeout(() => {
+                    imageModal.classList.add('hidden');
+                }, 300);
+            }
+
+            closeModalBtn.addEventListener('click', closeModal);
+            imageModal.addEventListener('click', function(e) {
+                if (e.target === imageModal) {
+                    closeModal();
+                }
+            });
+
+            // --- Scroll to Top Button ---
+            const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    scrollToTopBtn.classList.add('visible');
+                } else {
+                    scrollToTopBtn.classList.remove('visible');
+                }
+            });
+            scrollToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // --- Fade In Sections on Scroll ---
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+
+            // --- Particles.js Initialization ---
+            if (typeof particlesJS !== 'undefined') {
+                particlesJS('particles-js', {
+                    "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#3b82f6" }, "shape": { "type": "circle", }, "opacity": { "value": 0.5, "random": false, }, "size": { "value": 3, "random": true, }, "line_linked": { "enable": true, "distance": 150, "color": "#64748b", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
+            }
+            
+            // --- Vanilla-Tilt.js for Project & Cert Cards ---
+            if (typeof VanillaTilt !== 'undefined') {
+                VanillaTilt.init(document.querySelectorAll(".project-card, .cert-card"), {
+                    max: 15,
+                    speed: 400,
+                    glare: true,
+                    "max-glare": 0.2
+                });
+            }
+        });
+    </script>
+</body>
+</html>

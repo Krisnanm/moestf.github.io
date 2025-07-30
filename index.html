@@ -132,30 +132,6 @@
             transform: translateY(0);
         }
 
-        /* Timeline Styling */
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            width: 1rem;
-            height: 1rem;
-            border-radius: 50%;
-            background-color: var(--surface);
-            border: 3px solid var(--primary);
-            top: 0.25rem;
-            left: -2.5rem;
-            z-index: 10;
-            transition: background-color 0.3s ease, border-color 0.3s ease;
-        }
-        .timeline-line {
-            position: absolute;
-            height: 100%;
-            width: 2px;
-            background-color: var(--primary);
-            left: calc(1rem - 1px);
-            top: 0;
-            opacity: 0.3;
-        }
-
         /* Scroll to top button */
         #scrollToTopBtn {
             position: fixed;
@@ -434,35 +410,82 @@
             </div>
         </section>
 
-        <!-- Education Section -->
+        <!-- Education & Organization Section -->
         <section id="education" class="py-20 fade-in-section">
             <div class="container mx-auto px-6">
-                <h2 class="text-3xl font-bold text-center text-slate-800 dark:text-white mb-12">Pendidikan & Organisasi</h2>
-                <div class="relative max-w-2xl mx-auto pl-10">
-                    <div class="timeline-line"></div>
-                    <!-- Timeline Item 1 -->
-                    <div class="mb-12 relative timeline-item">
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Telkom University Bandung</h3>
-                        <p class="text-slate-600 dark:text-slate-300">D3 Rekayasa Perangkat Lunak Aplikasi</p>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">2022 - 2025</p>
-                    </div>
-                    <!-- Timeline Item 2 -->
-                    <div class="mb-12 relative timeline-item">
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Liaison Officer (LO) PKKMB</h3>
-                        <p class="text-slate-600 dark:text-slate-300">Orientasi Mahasiswa Baru D3 RPL Aplikasi</p>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">2023</p>
-                    </div>
-                    <!-- Timeline Item 3 -->
-                    <div class="mb-12 relative timeline-item">
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Himpunan D3 RPL Aplikasi</h3>
-                        <p class="text-slate-600 dark:text-slate-300">Divisi Pengembangan Potensi Minat dan Bakat</p>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">2023</p>
-                    </div>
-                    <!-- Timeline Item 4 -->
-                    <div class="mb-8 relative timeline-item">
-                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">SMA Negeri 85 Jakarta</h3>
-                        <p class="text-slate-600 dark:text-slate-300">Jurusan IPA</p>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">2018 - 2021</p>
+                <h2 class="text-3xl font-bold text-center text-slate-800 dark:text-white mb-16">Pendidikan & Organisasi</h2>
+                <div class="relative max-w-5xl mx-auto">
+                    <!-- Center Line for Desktop View -->
+                    <div class="absolute w-0.5 h-full bg-blue-500/30 left-0 md:left-1/2 transform md:-translate-x-1/2"></div>
+                    
+                    <div class="space-y-12">
+                        <!-- Item 1: Telkom University (Pendidikan) -->
+                        <div class="relative md:grid md:grid-cols-2 md:gap-x-10">
+                            <div class="md:text-right">
+                                <div class="relative">
+                                    <!-- Dot on the timeline -->
+                                    <div class="absolute top-1 w-4 h-4 bg-slate-100 dark:bg-slate-900 rounded-full border-2 border-blue-500 z-10 left-[-7px] md:left-auto md:right-[-22px]"></div>
+                                    <!-- Content -->
+                                    <div class="pl-6 md:pl-0 md:pr-10">
+                                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Telkom University Bandung</h3>
+                                        <p class="text-slate-600 dark:text-slate-300">D3 Rekayasa Perangkat Lunak Aplikasi</p>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">2022 - 2025</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="hidden md:block"></div> <!-- Spacer for the right column on desktop -->
+                        </div>
+    
+                        <!-- Item 2: Liaison Officer (Organisasi) -->
+                        <div class="relative md:grid md:grid-cols-2 md:gap-x-10">
+                            <div class="hidden md:block"></div> <!-- Spacer for the left column on desktop -->
+                            <div class="md:text-left">
+                                 <div class="relative">
+                                    <!-- Dot on the timeline -->
+                                    <div class="absolute top-1 w-4 h-4 bg-slate-100 dark:bg-slate-900 rounded-full border-2 border-blue-500 z-10 left-[-7px] md:left-[-22px]"></div>
+                                    <!-- Content -->
+                                    <div class="pl-6 md:pl-10">
+                                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Liaison Officer (LO) PKKMB</h3>
+                                        <p class="text-slate-600 dark:text-slate-300">Orientasi Mahasiswa Baru D3 RPL Aplikasi</p>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">2023</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Item 3: Himpunan (Organisasi) -->
+                        <div class="relative md:grid md:grid-cols-2 md:gap-x-10">
+                            <div class="hidden md:block"></div> <!-- Spacer for the left column on desktop -->
+                            <div class="md:text-left">
+                                 <div class="relative">
+                                    <!-- Dot on the timeline -->
+                                    <div class="absolute top-1 w-4 h-4 bg-slate-100 dark:bg-slate-900 rounded-full border-2 border-blue-500 z-10 left-[-7px] md:left-[-22px]"></div>
+                                    <!-- Content -->
+                                    <div class="pl-6 md:pl-10">
+                                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">Himpunan D3 RPL Aplikasi</h3>
+                                        <p class="text-slate-600 dark:text-slate-300">Divisi Pengembangan Potensi Minat dan Bakat</p>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">2023</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <!-- Item 4: SMAN 85 (Pendidikan) -->
+                        <div class="relative md:grid md:grid-cols-2 md:gap-x-10">
+                            <div class="md:text-right">
+                                 <div class="relative">
+                                    <!-- Dot on the timeline -->
+                                    <div class="absolute top-1 w-4 h-4 bg-slate-100 dark:bg-slate-900 rounded-full border-2 border-blue-500 z-10 left-[-7px] md:left-auto md:right-[-22px]"></div>
+                                    <!-- Content -->
+                                    <div class="pl-6 md:pl-0 md:pr-10">
+                                        <h3 class="text-xl font-bold text-slate-800 dark:text-white">SMA Negeri 85 Jakarta</h3>
+                                        <p class="text-slate-600 dark:text-slate-300">Jurusan IPA</p>
+                                        <p class="text-sm text-slate-500 dark:text-slate-400">2018 - 2021</p>
+                                    </div>
+                                </div>
+                            </div>
+                             <div class="hidden md:block"></div> <!-- Spacer for the right column on desktop -->
+                        </div>
                     </div>
                 </div>
             </div>
@@ -500,144 +523,115 @@
         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
     </button>
 
-    <!-- JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
-
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // --- Preloader ---
+        document.addEventListener('DOMContentLoaded', function () {
+            // Preloader
             const preloader = document.getElementById('preloader');
             window.addEventListener('load', () => {
                 preloader.style.opacity = '0';
                 preloader.style.visibility = 'hidden';
             });
 
-            // --- Theme Toggle (Dark/Light Mode) ---
-            const themeToggle = document.getElementById('theme-toggle');
-            const body = document.body;
-
-            if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                body.classList.add('dark');
-            } else {
-                body.classList.remove('dark');
-            }
-
-            themeToggle.addEventListener('click', function() {
-                body.classList.toggle('dark');
-                if (body.classList.contains('dark')) {
-                    localStorage.setItem('color-theme', 'dark');
-                } else {
-                    localStorage.setItem('color-theme', 'light');
-                }
-            });
-
-            // --- Mobile Menu Toggle ---
+            // Mobile Menu
             const mobileMenuButton = document.getElementById('mobile-menu-button');
             const mobileMenu = document.getElementById('mobile-menu');
             mobileMenuButton.addEventListener('click', () => {
                 mobileMenu.classList.toggle('hidden');
             });
-            mobileMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
-                });
+
+            // Dark Mode Toggle
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                body.classList.add('dark');
+            }
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark');
+                if (body.classList.contains('dark')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+                // Re-initialize particles with correct colors
+                initParticles();
             });
 
-            // --- Typing Animation ---
-            const typingTextElement = document.getElementById('typing-text');
-            const texts = ["Freshgraduate Aplication Software Engineering", "Software Quality Assurance Enthusiast"];
-            let textIndex = 0;
+            // Typing Animation
+            const typingText = document.getElementById('typing-text');
+            const roles = ["Software Quality Assurance", "Mobile Developer", "Web Developer"];
+            let roleIndex = 0;
             let charIndex = 0;
+            let isDeleting = false;
 
             function type() {
-                if (charIndex < texts[textIndex].length) {
-                    typingTextElement.textContent += texts[textIndex].charAt(charIndex);
-                    charIndex++;
-                    setTimeout(type, 50);
-                } else {
-                    setTimeout(erase, 2000);
-                }
-            }
-
-            function erase() {
-                if (charIndex > 0) {
-                    typingTextElement.textContent = texts[textIndex].substring(0, charIndex - 1);
+                const currentRole = roles[roleIndex];
+                if (isDeleting) {
+                    typingText.textContent = currentRole.substring(0, charIndex - 1);
                     charIndex--;
-                    setTimeout(erase, 25);
                 } else {
-                    textIndex = (textIndex + 1) % texts.length;
-                    setTimeout(type, 500);
+                    typingText.textContent = currentRole.substring(0, charIndex + 1);
+                    charIndex++;
                 }
-            }
-            if(typingTextElement) type();
 
-            // --- Project Filtering ---
-            const filterContainer = document.querySelector('.project-filters');
-            const projectCards = document.querySelectorAll('.project-card');
-            if (filterContainer) {
-                filterContainer.addEventListener('click', (e) => {
-                    if (e.target.classList.contains('filter-btn')) {
-                        filterContainer.querySelector('.active').classList.remove('active');
-                        e.target.classList.add('active');
-                        const filterValue = e.target.getAttribute('data-filter');
-                        
-                        projectCards.forEach(card => {
-                            card.style.transition = 'transform 0.3s ease-out, opacity 0.3s ease-out';
-                            card.style.transform = 'scale(0.95)';
-                            card.style.opacity = '0';
-                            
-                            setTimeout(() => {
-                                if (card.dataset.category === filterValue || filterValue === 'all') {
-                                    card.style.display = 'block';
-                                    setTimeout(() => {
-                                       card.style.transform = 'scale(1)';
-                                       card.style.opacity = '1';
-                                    }, 50);
-                                } else {
-                                    card.style.display = 'none';
-                                }
-                            }, 300);
-                        });
+                if (!isDeleting && charIndex === currentRole.length) {
+                    setTimeout(() => isDeleting = true, 2000);
+                } else if (isDeleting && charIndex === 0) {
+                    isDeleting = false;
+                    roleIndex = (roleIndex + 1) % roles.length;
+                }
+
+                setTimeout(type, isDeleting ? 100 : 200);
+            }
+            type();
+
+            // Section Fade-in on Scroll
+            const sections = document.querySelectorAll('.fade-in-section');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
                     }
                 });
-            }
+            }, { threshold: 0.1 });
+            sections.forEach(section => observer.observe(section));
 
-            // --- Image Modal Logic ---
-            const imageModal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            const closeModalBtn = document.getElementById('closeModal');
-            
-            document.querySelectorAll('.cert-img').forEach(img => {
-                img.addEventListener('click', function() {
-                    imageModal.classList.remove('hidden');
-                    setTimeout(() => {
-                        imageModal.classList.remove('opacity-0');
-                        modalImage.src = this.src;
-                        modalImage.classList.remove('scale-95');
-                    }, 10);
+            // Project Filtering
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projects = document.querySelectorAll('.project-card');
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const filter = button.getAttribute('data-filter');
+                    
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+
+                    // Filter projects
+                    projects.forEach(project => {
+                        project.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+                        project.style.opacity = '0';
+                        project.style.transform = 'scale(0.95)';
+                        setTimeout(() => {
+                            if (filter === 'all' || project.getAttribute('data-category') === filter) {
+                                project.style.display = 'block';
+                                setTimeout(() => {
+                                    project.style.opacity = '1';
+                                    project.style.transform = 'scale(1)';
+                                }, 50);
+                            } else {
+                                project.style.display = 'none';
+                            }
+                        }, 300);
+                    });
                 });
             });
 
-            function closeModal() {
-                modalImage.classList.add('scale-95');
-                imageModal.classList.add('opacity-0');
-                setTimeout(() => {
-                    imageModal.classList.add('hidden');
-                }, 300);
-            }
-
-            closeModalBtn.addEventListener('click', closeModal);
-            imageModal.addEventListener('click', function(e) {
-                if (e.target === imageModal) {
-                    closeModal();
-                }
-            });
-
-            // --- Scroll to Top Button ---
+            // Scroll to Top Button
             const scrollToTopBtn = document.getElementById('scrollToTopBtn');
             window.addEventListener('scroll', () => {
-                if (window.pageYOffset > 300) {
+                if (window.scrollY > 300) {
                     scrollToTopBtn.classList.add('visible');
                 } else {
                     scrollToTopBtn.classList.remove('visible');
@@ -646,37 +640,111 @@
             scrollToTopBtn.addEventListener('click', () => {
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-            
-            // --- Fade In Sections on Scroll ---
-            const sections = document.querySelectorAll('.fade-in-section');
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('is-visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, { threshold: 0.1 });
 
-            sections.forEach(section => {
-                observer.observe(section);
+            // Image Modal (Lightbox)
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            const certImages = document.querySelectorAll('.cert-img');
+            const closeModalBtn = document.getElementById('closeModal');
+
+            certImages.forEach(img => {
+                img.addEventListener('click', () => {
+                    modal.classList.remove('hidden');
+                    setTimeout(() => {
+                        modal.classList.remove('opacity-0');
+                        modalImg.classList.remove('scale-95');
+                    }, 10);
+                    modalImg.src = img.src;
+                });
             });
 
-            // --- Particles.js Initialization ---
-            if (typeof particlesJS !== 'undefined') {
-                particlesJS('particles-js', {
-                    "particles": { "number": { "value": 80, "density": { "enable": true, "value_area": 800 } }, "color": { "value": "#3b82f6" }, "shape": { "type": "circle", }, "opacity": { "value": 0.5, "random": false, }, "size": { "value": 3, "random": true, }, "line_linked": { "enable": true, "distance": 150, "color": "#64748b", "opacity": 0.4, "width": 1 }, "move": { "enable": true, "speed": 2, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false, } }, "interactivity": { "detect_on": "canvas", "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" }, "resize": true }, "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } }, "bubble": { "distance": 400, "size": 40, "duration": 2, "opacity": 8, "speed": 3 }, "repulse": { "distance": 200, "duration": 0.4 }, "push": { "particles_nb": 4 }, "remove": { "particles_nb": 2 } } }, "retina_detect": true });
+            const closeModal = () => {
+                modal.classList.add('opacity-0');
+                modalImg.classList.add('scale-95');
+                setTimeout(() => modal.classList.add('hidden'), 300);
             }
-            
-            // --- Vanilla-Tilt.js for Project & Cert Cards ---
-            if (typeof VanillaTilt !== 'undefined') {
-                VanillaTilt.init(document.querySelectorAll(".project-card, .cert-card"), {
-                    max: 15,
-                    speed: 400,
-                    glare: true,
-                    "max-glare": 0.2
+            closeModalBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Particles.js Initialization
+            function initParticles() {
+                const isDark = document.body.classList.contains('dark');
+                const particleColor = isDark ? "#94a3b8" : "#64748b"; // slate-400 dark, slate-500 light
+                const lineColor = isDark ? "#334155" : "#cbd5e1"; // slate-700 dark, slate-300 light
+
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {
+                            "value": 80,
+                            "density": {
+                                "enable": true,
+                                "value_area": 800
+                            }
+                        },
+                        "color": {
+                            "value": particleColor
+                        },
+                        "shape": {
+                            "type": "circle",
+                        },
+                        "opacity": {
+                            "value": 0.5,
+                            "random": false,
+                        },
+                        "size": {
+                            "value": 3,
+                            "random": true,
+                        },
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": lineColor,
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 2,
+                            "direction": "none",
+                            "random": false,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false,
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                             "grab": {
+                                "distance": 140,
+                                "line_linked": {
+                                "opacity": 1
+                                }
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            },
+                        }
+                    },
+                    "retina_detect": true
                 });
             }
+            initParticles();
         });
     </script>
 </body>
